@@ -45,14 +45,14 @@ class modMMIRedmine extends DolibarrModules
 
 		// Id for module (must be unique).
 		// Use here a free id (See in Home -> System information -> Dolibarr for list of used modules id).
-		$this->numero = 500000; // TODO Go on page https://wiki.dolibarr.org/index.php/List_of_modules_id to reserve an id number for your module
+		$this->numero = 437819; // TODO Go on page https://wiki.dolibarr.org/index.php/List_of_modules_id to reserve an id number for your module
 
 		// Key text used to identify module (for permissions, menus, etc...)
 		$this->rights_class = 'mmiredmine';
 
 		// Family can be 'base' (core modules),'crm','financial','hr','projects','products','ecm','technic' (transverse modules),'interface' (link with external tools),'other','...'
 		// It is used to group modules by family in module setup page
-		$this->family = "other";
+		$this->family = "interface";
 
 		// Module position in the family on 2 digits ('01', '10', '20', ...)
 		$this->module_position = '90';
@@ -68,8 +68,8 @@ class modMMIRedmine extends DolibarrModules
 		$this->descriptionlong = "MMIRedmineDescription";
 
 		// Author
-		$this->editor_name = 'Editor name';
-		$this->editor_url = 'https://www.example.com';
+		$this->editor_name = 'iProspective';
+		$this->editor_url = 'https://iprospective.fr';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
 		$this->version = '1.0';
@@ -83,7 +83,7 @@ class modMMIRedmine extends DolibarrModules
 		// If file is in theme/yourtheme/img directory under name object_pictovalue.png, use this->picto='pictovalue'
 		// If file is in module/img directory under name object_pictovalue.png, use this->picto='pictovalue@module'
 		// To use a supported fa-xxx css style of font awesome, use this->picto='xxx'
-		$this->picto = 'generic';
+		$this->picto = 'logo@mmiredmine';
 
 		// Define some features supported by module (triggers, login, substitutions, menus, css, etc...)
 		$this->module_parts = array(
@@ -94,7 +94,7 @@ class modMMIRedmine extends DolibarrModules
 			// Set this to 1 if module has its own substitution function file (core/substitutions)
 			'substitutions' => 0,
 			// Set this to 1 if module has its own menus handler directory (core/menus)
-			'menus' => 0,
+			'menus' => 1,
 			// Set this to 1 if module overwrite template dir (core/tpl)
 			'tpl' => 0,
 			// Set this to 1 if module has its own barcode directory (core/modules/barcode)
@@ -136,7 +136,7 @@ class modMMIRedmine extends DolibarrModules
 		// A condition to hide module
 		$this->hidden = false;
 		// List of module class names as string that must be enabled if this module is enabled. Example: array('always1'=>'modModuleToEnable1','always2'=>'modModuleToEnable2', 'FR1'=>'modModuleToEnableFR'...)
-		$this->depends = array();
+		$this->depends = array('modMMICommon');
 		$this->requiredby = array(); // List of module class names as string to disable if this one is disabled. Example: array('modModuleToDisable1', ...)
 		$this->conflictwith = array(); // List of module class names as string this module is in conflict with. Example: array('modModuleToDisable1', ...)
 
@@ -265,22 +265,22 @@ class modMMIRedmine extends DolibarrModules
 		$this->rights = array();
 		$r = 0;
 		// Add here entries to declare new permissions
-		/* BEGIN MODULEBUILDER PERMISSIONS */
-		$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Read objects of MMIRedmine'; // Permission label
-		$this->rights[$r][4] = 'myobject';
-		$this->rights[$r][5] = 'read'; // In php code, permission will be checked by test if ($user->rights->mmiredmine->myobject->read)
-		$r++;
-		$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Create/Update objects of MMIRedmine'; // Permission label
-		$this->rights[$r][4] = 'myobject';
-		$this->rights[$r][5] = 'write'; // In php code, permission will be checked by test if ($user->rights->mmiredmine->myobject->write)
-		$r++;
-		$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Delete objects of MMIRedmine'; // Permission label
-		$this->rights[$r][4] = 'myobject';
-		$this->rights[$r][5] = 'delete'; // In php code, permission will be checked by test if ($user->rights->mmiredmine->myobject->delete)
-		$r++;
+		// /* BEGIN MODULEBUILDER PERMISSIONS */
+		// $this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
+		// $this->rights[$r][1] = 'Read objects of MMIRedmine'; // Permission label
+		// $this->rights[$r][4] = 'myobject';
+		// $this->rights[$r][5] = 'read'; // In php code, permission will be checked by test if ($user->rights->mmiredmine->myobject->read)
+		// $r++;
+		// $this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
+		// $this->rights[$r][1] = 'Create/Update objects of MMIRedmine'; // Permission label
+		// $this->rights[$r][4] = 'myobject';
+		// $this->rights[$r][5] = 'write'; // In php code, permission will be checked by test if ($user->rights->mmiredmine->myobject->write)
+		// $r++;
+		// $this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
+		// $this->rights[$r][1] = 'Delete objects of MMIRedmine'; // Permission label
+		// $this->rights[$r][4] = 'myobject';
+		// $this->rights[$r][5] = 'delete'; // In php code, permission will be checked by test if ($user->rights->mmiredmine->myobject->delete)
+		// $r++;
 		/* END MODULEBUILDER PERMISSIONS */
 
 		// Main menu entries to add
@@ -289,19 +289,19 @@ class modMMIRedmine extends DolibarrModules
 		// Add here entries to declare new menus
 		/* BEGIN MODULEBUILDER TOPMENU */
 		$this->menu[$r++] = array(
-			'fk_menu'=>'', // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-			'type'=>'top', // This is a Top menu entry
-			'titre'=>'ModuleMMIRedmineName',
-			'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
-			'mainmenu'=>'mmiredmine',
-			'leftmenu'=>'',
-			'url'=>'/mmiredmine/mmiredmineindex.php',
-			'langs'=>'mmiredmine@mmiredmine', // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-			'position'=>1000 + $r,
-			'enabled'=>'$conf->mmiredmine->enabled', // Define condition to show or hide menu entry. Use '$conf->mmiredmine->enabled' if entry must be visible if module is enabled.
-			'perms'=>'1', // Use 'perms'=>'$user->rights->mmiredmine->myobject->read' if you want your menu with a permission rules
-			'target'=>'',
-			'user'=>2, // 0=Menu for internal users, 1=external users, 2=both
+			// 'fk_menu'=>'', // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+			// 'type'=>'top', // This is a Top menu entry
+			// 'titre'=>'ModuleMMIRedmineName',
+			// 'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
+			// 'mainmenu'=>'mmiredmine',
+			// 'leftmenu'=>'',
+			// 'url'=>'/mmiredmine/mmiredmineindex.php',
+			// 'langs'=>'mmiredmine@mmiredmine', // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+			// 'position'=>1000 + $r,
+			// 'enabled'=>'$conf->mmiredmine->enabled', // Define condition to show or hide menu entry. Use '$conf->mmiredmine->enabled' if entry must be visible if module is enabled.
+			// 'perms'=>'1', // Use 'perms'=>'$user->rights->mmiredmine->myobject->read' if you want your menu with a permission rules
+			// 'target'=>'',
+			// 'user'=>2, // 0=Menu for internal users, 1=external users, 2=both
 		);
 		/* END MODULEBUILDER TOPMENU */
 		/* BEGIN MODULEBUILDER LEFTMENU MYOBJECT
@@ -437,50 +437,11 @@ class modMMIRedmine extends DolibarrModules
 		// Create extrafields during init
 		//include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
 		//$extrafields = new ExtraFields($this->db);
-		//$result1=$extrafields->addExtraField('mmiredmine_myattr1', "New Attr 1 label", 'boolean', 1,  3, 'thirdparty',   0, 0, '', '', 1, '', 0, 0, '', '', 'mmiredmine@mmiredmine', '$conf->mmiredmine->enabled');
-		//$result2=$extrafields->addExtraField('mmiredmine_myattr2', "New Attr 2 label", 'varchar', 1, 10, 'project',      0, 0, '', '', 1, '', 0, 0, '', '', 'mmiredmine@mmiredmine', '$conf->mmiredmine->enabled');
-		//$result3=$extrafields->addExtraField('mmiredmine_myattr3', "New Attr 3 label", 'varchar', 1, 10, 'bank_account', 0, 0, '', '', 1, '', 0, 0, '', '', 'mmiredmine@mmiredmine', '$conf->mmiredmine->enabled');
-		//$result4=$extrafields->addExtraField('mmiredmine_myattr4', "New Attr 4 label", 'select',  1,  3, 'thirdparty',   0, 1, '', array('options'=>array('code1'=>'Val1','code2'=>'Val2','code3'=>'Val3')), 1,'', 0, 0, '', '', 'mmiredmine@mmiredmine', '$conf->mmiredmine->enabled');
-		//$result5=$extrafields->addExtraField('mmiredmine_myattr5', "New Attr 5 label", 'text',    1, 10, 'user',         0, 0, '', '', 1, '', 0, 0, '', '', 'mmiredmine@mmiredmine', '$conf->mmiredmine->enabled');
 
 		// Permissions
 		$this->remove($options);
 
 		$sql = array();
-
-		// Document templates
-		$moduledir = dol_sanitizeFileName('mmiredmine');
-		$myTmpObjects = array();
-		$myTmpObjects['MyObject'] = array('includerefgeneration'=>0, 'includedocgeneration'=>0);
-
-		foreach ($myTmpObjects as $myTmpObjectKey => $myTmpObjectArray) {
-			if ($myTmpObjectKey == 'MyObject') {
-				continue;
-			}
-			if ($myTmpObjectArray['includerefgeneration']) {
-				$src = DOL_DOCUMENT_ROOT.'/install/doctemplates/'.$moduledir.'/template_myobjects.odt';
-				$dirodt = DOL_DATA_ROOT.'/doctemplates/'.$moduledir;
-				$dest = $dirodt.'/template_myobjects.odt';
-
-				if (file_exists($src) && !file_exists($dest)) {
-					require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
-					dol_mkdir($dirodt);
-					$result = dol_copy($src, $dest, 0, 0);
-					if ($result < 0) {
-						$langs->load("errors");
-						$this->error = $langs->trans('ErrorFailToCopyFile', $src, $dest);
-						return 0;
-					}
-				}
-
-				$sql = array_merge($sql, array(
-					"DELETE FROM ".MAIN_DB_PREFIX."document_model WHERE nom = 'standard_".strtolower($myTmpObjectKey)."' AND type = '".$this->db->escape(strtolower($myTmpObjectKey))."' AND entity = ".((int) $conf->entity),
-					"INSERT INTO ".MAIN_DB_PREFIX."document_model (nom, type, entity) VALUES('standard_".strtolower($myTmpObjectKey)."', '".$this->db->escape(strtolower($myTmpObjectKey))."', ".((int) $conf->entity).")",
-					"DELETE FROM ".MAIN_DB_PREFIX."document_model WHERE nom = 'generic_".strtolower($myTmpObjectKey)."_odt' AND type = '".$this->db->escape(strtolower($myTmpObjectKey))."' AND entity = ".((int) $conf->entity),
-					"INSERT INTO ".MAIN_DB_PREFIX."document_model (nom, type, entity) VALUES('generic_".strtolower($myTmpObjectKey)."_odt', '".$this->db->escape(strtolower($myTmpObjectKey))."', ".((int) $conf->entity).")"
-				));
-			}
-		}
 
 		return $this->_init($sql, $options);
 	}

@@ -18,9 +18,9 @@
 #
 
 # Module label 'ModuleMMIRedmineName'
-ModuleMMIRedmineName = Redmine connector
+ModuleMMIRedmineName = Connecteur Redmine
 # Module description 'ModuleMMIRedmineDesc'
-ModuleMMIRedmineDesc = MMIRedmine description
+ModuleMMIRedmineDesc = Synchronisation de tâches et temps avec Redmine
 
 #
 # Admin page
