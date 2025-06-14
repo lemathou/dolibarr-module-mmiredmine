@@ -136,7 +136,7 @@ class modMMIRedmine extends DolibarrModules
 		// A condition to hide module
 		$this->hidden = false;
 		// List of module class names as string that must be enabled if this module is enabled. Example: array('always1'=>'modModuleToEnable1','always2'=>'modModuleToEnable2', 'FR1'=>'modModuleToEnableFR'...)
-		$this->depends = array('modMMICommon');
+		$this->depends = array('modMMICommon', 'modProjet');
 		$this->requiredby = array(); // List of module class names as string to disable if this one is disabled. Example: array('modModuleToDisable1', ...)
 		$this->conflictwith = array(); // List of module class names as string this module is in conflict with. Example: array('modModuleToDisable1', ...)
 
@@ -201,31 +201,29 @@ class modMMIRedmine extends DolibarrModules
 
 		// Dictionaries
 		$this->dictionaries = array();
-		/* Example:
 		$this->dictionaries=array(
 			'langs'=>'mmiredmine@mmiredmine',
 			// List of tables we want to see into dictonnary editor
-			'tabname'=>array("table1", "table2", "table3"),
+			'tabname'=>array("mmi_redmine_time_entry_activities"),
 			// Label of tables
-			'tablib'=>array("Table1", "Table2", "Table3"),
+			'tablib'=>array("Redmine activités"),
 			// Request to select fields
-			'tabsql'=>array('SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table1 as f', 'SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table2 as f', 'SELECT f.rowid as rowid, f.code, f.label, f.active FROM '.MAIN_DB_PREFIX.'table3 as f'),
+			'tabsql'=>array('SELECT f.rowid as rowid, f.code, f.label, f.active, f.redmine_id, f.fk_product FROM '.MAIN_DB_PREFIX.'mmi_redmine_time_entry_activities as f',),
 			// Sort order
-			'tabsqlsort'=>array("label ASC", "label ASC", "label ASC"),
+			'tabsqlsort'=>array("label ASC"),
 			// List of fields (result of select to show dictionary)
-			'tabfield'=>array("code,label", "code,label", "code,label"),
+			'tabfield'=>array("code,label,redmine_id,fk_product"),
 			// List of fields (list of fields to edit a record)
-			'tabfieldvalue'=>array("code,label", "code,label", "code,label"),
+			'tabfieldvalue'=>array("code,label,redmine_id,fk_product"),
 			// List of fields (list of fields for insert)
-			'tabfieldinsert'=>array("code,label", "code,label", "code,label"),
+			'tabfieldinsert'=>array("code,label,redmine_id,fk_product"),
 			// Name of columns with primary key (try to always name it 'rowid')
-			'tabrowid'=>array("rowid", "rowid", "rowid"),
+			'tabrowid'=>array("rowid"),
 			// Condition to show each dictionary
-			'tabcond'=>array($conf->mmiredmine->enabled, $conf->mmiredmine->enabled, $conf->mmiredmine->enabled),
+			'tabcond'=>array($conf->mmiredmine->enabled),
 			// Tooltip for every fields of dictionaries: DO NOT PUT AN EMPTY ARRAY
-			'tabhelp'=>array(array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip'), array('code'=>$langs->trans('CodeTooltipHelp'), 'field2' => 'field2tooltip'), ...),
+			'tabhelp'=>array(array('code'=>$langs->trans('CodeTooltipHelp'))),
 		);
-		*/
 
 		// Boxes/Widgets
 		// Add here list of php file(s) stored in mmiredmine/core/boxes that contains a class to show a widget.
@@ -288,21 +286,23 @@ class modMMIRedmine extends DolibarrModules
 		$r = 0;
 		// Add here entries to declare new menus
 		/* BEGIN MODULEBUILDER TOPMENU */
+		/*
 		$this->menu[$r++] = array(
-			// 'fk_menu'=>'', // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-			// 'type'=>'top', // This is a Top menu entry
-			// 'titre'=>'ModuleMMIRedmineName',
-			// 'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
-			// 'mainmenu'=>'mmiredmine',
-			// 'leftmenu'=>'',
-			// 'url'=>'/mmiredmine/mmiredmineindex.php',
-			// 'langs'=>'mmiredmine@mmiredmine', // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-			// 'position'=>1000 + $r,
-			// 'enabled'=>'$conf->mmiredmine->enabled', // Define condition to show or hide menu entry. Use '$conf->mmiredmine->enabled' if entry must be visible if module is enabled.
-			// 'perms'=>'1', // Use 'perms'=>'$user->rights->mmiredmine->myobject->read' if you want your menu with a permission rules
-			// 'target'=>'',
-			// 'user'=>2, // 0=Menu for internal users, 1=external users, 2=both
+			'fk_menu'=>'', // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+			'type'=>'top', // This is a Top menu entry
+			'titre'=>'ModuleMMIRedmineName',
+			'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
+			'mainmenu'=>'mmiredmine',
+			'leftmenu'=>'',
+			'url'=>'/mmiredmine/mmiredmineindex.php',
+			'langs'=>'mmiredmine@mmiredmine', // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+			'position'=>1000 + $r,
+			'enabled'=>'$conf->mmiredmine->enabled', // Define condition to show or hide menu entry. Use '$conf->mmiredmine->enabled' if entry must be visible if module is enabled.
+			'perms'=>'1', // Use 'perms'=>'$user->rights->mmiredmine->myobject->read' if you want your menu with a permission rules
+			'target'=>'',
+			'user'=>2, // 0=Menu for internal users, 1=external users, 2=both
 		);
+		*/
 		/* END MODULEBUILDER TOPMENU */
 		/* BEGIN MODULEBUILDER LEFTMENU MYOBJECT
 		$this->menu[$r++]=array(
@@ -435,8 +435,14 @@ class modMMIRedmine extends DolibarrModules
 		}
 
 		// Create extrafields during init
-		//include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
-		//$extrafields = new ExtraFields($this->db);
+		include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
+		$extrafields = new ExtraFields($this->db);
+
+		// Project
+		$extrafields->addExtraField('redmine_id', $langs->trans('Extrafield_redmine_id'), 'int', 100, 10, 'projet', 0, 0, '', "", 1, '', -5, $langs->trans('ExtrafieldToolTip_redmine_id'), '', $conf->entity, 'mmiredmine@mmiredmine', '$conf->mmiredmine->enabled');
+
+		// Element Time
+		//$extrafields->addExtraField('redmine_activity_id', $langs->trans('Extrafield_redmine_activity_id'), 'int', 100, 10, 'element_time', 0, 0, '', "", 1, '', -5, $langs->trans('ExtrafieldToolTip_redmine_activity_id'), '', $conf->entity, 'mmiredmine@mmiredmine', '$conf->mmiredmine->enabled');
 
 		// Permissions
 		$this->remove($options);

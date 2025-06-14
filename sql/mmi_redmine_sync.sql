@@ -1,0 +1,3 @@
+#mmi_redmine_sync
+#mmi_redmine_sync_
+#mmi_redmine_time_entry_activities

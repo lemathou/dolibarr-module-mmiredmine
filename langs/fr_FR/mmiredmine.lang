@@ -28,11 +28,12 @@ ModuleMMIRedmineDesc = Synchronisation de tâches et temps avec Redmine
 MMIRedmineSetup = MMIRedmine setup
 Settings = Settings
 MMIRedmineSetupPage = MMIRedmine setup page
-MMIREDMINE_MYPARAM1 = My param 1
-MMIREDMINE_MYPARAM1Tooltip = My param 1 tooltip
-MMIREDMINE_MYPARAM2=My param 2
-MMIREDMINE_MYPARAM2Tooltip=My param 2 tooltip
 
+MMIREDMINESetup = Configuration connecteur Redmine
+
+MMI_REDMINE_URL = URL Redmine
+MMI_REDMINE_TOKEN = Token Redmine
+MMI_REDMINE_PROJECTS = Projets synchronisés
 
 #
 # About page
@@ -52,3 +53,9 @@ MyPageName = My page name
 #
 MyWidget = My widget
 MyWidgetDescription = My widget description
+
+#
+# Extrafields
+#
+Extrafield_redmine_id = Redmine ID
+Extrafield_redmine_activity_id = Redmine Activity ID
