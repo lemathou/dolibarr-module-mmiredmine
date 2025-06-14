@@ -25,34 +25,25 @@ ModuleMMIRedmineDesc = Synchronisation de tâches et temps avec Redmine
 #
 # Admin page
 #
-MMIRedmineSetup = MMIRedmine setup
-Settings = Settings
-MMIRedmineSetupPage = MMIRedmine setup page
+MMIRedmineSetup = Administration Connecteur Redmine
+Settings = Configuration
+MMIRedmineSetupPage = Configuration Connecteur Redmine
 
-MMIREDMINESetup = Configuration connecteur Redmine
-
+MMI_REDMINE_AUTH = Authentification API
 MMI_REDMINE_URL = URL Redmine
 MMI_REDMINE_TOKEN = Token Redmine
 MMI_REDMINE_PROJECTS = Projets synchronisés
+MMI_REDMINE_PROJECT_AUTOCREATE = Création automatique de projet synchronisé
+MMI_REDMINE_CRON = Tâche CRON
+MMI_REDMINE_CRON_ACTIVE = Activer la tâche CRON
+MMI_REDMINE_CRON_FREQUENCY = Fréquence de la tâche CRON
 
 #
 # About page
 #
-About = About
-MMIRedmineAbout = About MMIRedmine
-MMIRedmineAboutPage = MMIRedmine about page
-
-#
-# Sample page
-#
-MMIRedmineArea = Home MMIRedmine
-MyPageName = My page name
-
-#
-# Sample widget
-#
-MyWidget = My widget
-MyWidgetDescription = My widget description
+About = A propos
+MMIRedmineAbout = A propos du Connecteur Redmine
+MMIRedmineAboutPage = A propos du Connecteur Redmine
 
 #
 # Extrafields

@@ -68,7 +68,7 @@ class modMMIRedmine extends DolibarrModules
 		$this->descriptionlong = "MMIRedmineDescription";
 
 		// Author
-		$this->editor_name = 'iProspective';
+		$this->editor_name = 'iProspective Mathieu Moulin MMI';
 		$this->editor_url = 'https://iprospective.fr';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
@@ -83,7 +83,7 @@ class modMMIRedmine extends DolibarrModules
 		// If file is in theme/yourtheme/img directory under name object_pictovalue.png, use this->picto='pictovalue'
 		// If file is in module/img directory under name object_pictovalue.png, use this->picto='pictovalue@module'
 		// To use a supported fa-xxx css style of font awesome, use this->picto='xxx'
-		$this->picto = 'logo@mmiredmine';
+		$this->picto = 'logo_redmine@mmiredmine';
 
 		// Define some features supported by module (triggers, login, substitutions, menus, css, etc...)
 		$this->module_parts = array(
@@ -144,7 +144,7 @@ class modMMIRedmine extends DolibarrModules
 		$this->langfiles = array("mmiredmine@mmiredmine");
 
 		// Prerequisites
-		$this->phpmin = array(5, 6); // Minimum version of PHP required by module
+		$this->phpmin = array(7, 4); // Minimum version of PHP required by module
 		$this->need_dolibarr_version = array(11, -3); // Minimum version of Dolibarr required by module
 
 		// Messages at activation
@@ -158,7 +158,12 @@ class modMMIRedmine extends DolibarrModules
 		// Example: $this->const=array(1 => array('MMIREDMINE_MYNEWCONST1', 'chaine', 'myvalue', 'This is a constant to add', 1),
 		//                             2 => array('MMIREDMINE_MYNEWCONST2', 'chaine', 'myvalue', 'This is another constant to add', 0, 'current', 1)
 		// );
-		$this->const = array();
+		$this->const = array(
+			 array('MMI_REDMINE_URL', 'string', '', 'MMIRedmineUrlDesc', 0, 'current', 0),
+			 array('MMI_REDMINE_TOKEN', 'string', '', 'MMIRedmineTokenDesc', 0, 'current', 0),
+			 array('MMI_REDMINE_PROJECTS', 'string', '', 'MMIRedmineProjectsDesc', 0, 'current', 0),
+			 array('MMI_REDMINE_PROJECT_AUTOCREATE', 'int', '', 'MMIRedmineProjectAutocreateDesc', 0, 'current', 0),
+		);
 
 		// Some keys to add into the overwriting translation tables
 		/*$this->overwrite_translation = array(
@@ -440,6 +445,9 @@ class modMMIRedmine extends DolibarrModules
 
 		// Project
 		$extrafields->addExtraField('redmine_id', $langs->trans('Extrafield_redmine_id'), 'int', 100, 10, 'projet', 0, 0, '', "", 1, '', -5, $langs->trans('ExtrafieldToolTip_redmine_id'), '', $conf->entity, 'mmiredmine@mmiredmine', '$conf->mmiredmine->enabled');
+
+		// Project
+		$extrafields->addExtraField('redmine_id', $langs->trans('Extrafield_redmine_id'), 'int', 100, 10, 'user', 0, 0, '', "", 1, '', -5, $langs->trans('ExtrafieldToolTip_redmine_id'), '', $conf->entity, 'mmiredmine@mmiredmine', '$conf->mmiredmine->enabled');
 
 		// Element Time
 		//$extrafields->addExtraField('redmine_activity_id', $langs->trans('Extrafield_redmine_activity_id'), 'int', 100, 10, 'element_time', 0, 0, '', "", 1, '', -5, $langs->trans('ExtrafieldToolTip_redmine_activity_id'), '', $conf->entity, 'mmiredmine@mmiredmine', '$conf->mmiredmine->enabled');

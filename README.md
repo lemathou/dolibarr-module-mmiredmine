@@ -1,8 +1,34 @@
 # MMIREDMINE FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+Redmine to Dolibarr Connector for Projectsn tasks and time entries 
+
 ## Features
 
-Description of the module...
+Synchronisation from Redmine to Dolibarr :
+* Time spent activities
+* Projects
+* Tasks
+* Time entries
+
+User mapping :
+* Map users between Redmine and Dolibarr (extrafield redmine ID in user)
+
+Time spent activities synchronisation :
+* Map activities to product ID using dictionnary (with field redmine ID)
+* Will probably use another class in ther future
+
+Project synchronisation :
+* Can Map Redmine projects to Dolibarr Project before synchronisation (using extrafield redmine ID in project)
+* Specify if Synchronisation should create in Dolibarr new Redmine projects which are not already mapped
+
+Task Synchronisation :
+* Creates and updates if needed
+  
+Time entries :
+* Creates, attach to tasks and updates
+* Create and use a specific "NOTASK" task if there is no task associated to redmine a time entry
+  
+Possibility to create invoices as usual from time entries.
 
 <!--
 ![Screenshot mmiredmine](img/screenshot_mmiredmine.png?raw=true "MMIRedmine"){imgmd}

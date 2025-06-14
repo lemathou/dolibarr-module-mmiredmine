@@ -1,3 +1,3 @@
 <?php
 
-$modulename = 'MMIREDMINE';
+$modulename = 'MMIRedmine';
