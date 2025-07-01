@@ -26,7 +26,6 @@ ModuleMMIRedmineDesc = Synchronisation de tâches et temps avec Redmine
 # Admin page
 #
 MMIRedmineSetup = Administration Connecteur Redmine
-Settings = Configuration
 MMIRedmineSetupPage = Configuration Connecteur Redmine
 
 MMI_REDMINE_AUTH = Authentification API
@@ -41,7 +40,6 @@ MMI_REDMINE_CRON_FREQUENCY = Fréquence de la tâche CRON
 #
 # About page
 #
-About = A propos
 MMIRedmineAbout = A propos du Connecteur Redmine
 MMIRedmineAboutPage = A propos du Connecteur Redmine
 
